@@ -13,5 +13,5 @@ class ProductPage(BasePage):
         add_to_basket_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET)
         add_to_basket_button.click()
         self.solve_quiz_and_get_code()
-        assert self.get_product_name() == self.browser.find_elements(*ProductPageLocators.ALLERTS_SUCCESS_LIST)[0].text  , "Prodict was not added"  
+        assert self.get_product_name() == self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE).text  , "Prodict was not added"  
     
