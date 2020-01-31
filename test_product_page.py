@@ -18,12 +18,25 @@ def test_guest_can_add_product_to_basket(browser, link):
     page = ProductPage(browser, link)   
     page.open()
     page.add_product_to_basket()
-    
-    
-def test_guest_should_not_see_success_message_before_adding_product(browser):
+
+def test_guest_cannot_see_success_message_after_adding_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0"
     page = ProductPage(browser, link)   
     page.open()
-    assert not page.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE),"Success message is presented"
+    page.add_product_to_basket()
+    assert page.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE),"Success message is presented"
+    
+def test_guest_cannot_see_success_message_before_adding_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0"
+    page = ProductPage(browser, link)   
+    page.open()
+    assert page.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE),"Success message is presented"
+    
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0"
+    page = ProductPage(browser, link)   
+    page.open()
+    page.add_product_to_basket()
+    assert page.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE),"Success message is presented"
     
     
