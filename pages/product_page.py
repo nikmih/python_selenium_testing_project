@@ -14,3 +14,9 @@ class ProductPage(BasePage):
         self.solve_quiz_and_get_code() 
         assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE),"Success message is not presented after product was added to the basket"
     
+    def is_not_succcess_message_presented(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE),"Success message is presented"
+    
+    def is_not_succcess_message_disappeared(self): 
+        assert not self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE),"Success message is dissapeared"
+    

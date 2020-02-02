@@ -65,7 +65,7 @@ def test_guest_cannot_see_success_message_before_adding_product_to_basket(browse
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0"
     page = ProductPage(browser, link)   
     page.open()
-    assert page.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE),"Success message is presented"
+    page.is_not_succcess_message_presented()
 
 
 def test_message_is_not_disappeared_after_adding_product_to_basket(browser):
@@ -73,8 +73,8 @@ def test_message_is_not_disappeared_after_adding_product_to_basket(browser):
     page = ProductPage(browser, link)   
     page.open()
     page.add_product_to_basket()
-    assert not page.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE),"Success message is dissapeared"
-
+    page.is_not_succcess_message_disappeared()
+    
 
 def test_guest_should_see_login_link_on_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
